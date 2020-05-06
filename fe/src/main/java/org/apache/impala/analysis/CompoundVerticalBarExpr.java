@@ -85,11 +85,11 @@ public class CompoundVerticalBarExpr extends Expr {
     if (e1.getType ().isBoolean () || e1.getType().isNull()) {
       type_ = Type.BOOLEAN;
       logicalOR = new CompoundPredicate(CompoundPredicate.Operator.OR, e1, e2);
-      logicalOR.analyzeImpl(analyzer);
+      logicalOR.analyze(analyzer);
     } else if (e1.getType ().isStringType ()) {
       type_ = Type.STRING;
       concatFunctionCall = new FunctionCallExpr("concat", Lists.newArrayList(e1, e2));
-      concatFunctionCall.analyzeImpl(analyzer);
+      concatFunctionCall.analyze(analyzer);
     } else {
       throw new AnalysisException(String.format("Operand '%s' part of CompoundVerticalBarExpr " +
             "'%s' should return type 'BOOLEAN' or 'STRING' but returns type '%s'.",
